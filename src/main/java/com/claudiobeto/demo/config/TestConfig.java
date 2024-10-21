@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.claudiobeto.demo.entities.Order;
 import com.claudiobeto.demo.entities.User;
+import com.claudiobeto.demo.entities.enums.OrderStatus;
 import com.claudiobeto.demo.repositories.OrderRepository;
 import com.claudiobeto.demo.repositories.UserRepository;
 
@@ -30,9 +31,9 @@ public class TestConfig  implements CommandLineRunner{
 		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		
-		Order o1 = new Order(null, Instant.parse("2024-10-18T18:15:07Z"), u1); 
-		Order o2 = new Order(null, Instant.parse("2024-10-18T20:15:07Z"), u2); 
-		Order o3 = new Order(null, Instant.parse("2024-10-18T19:15:07Z"), u1);
+		Order o1 = new Order(null, Instant.parse("2024-10-18T18:15:07Z"), OrderStatus.PAID, u1); 
+		Order o2 = new Order(null, Instant.parse("2024-10-18T20:15:07Z"), OrderStatus.WAITING_PAYMENT, u2); 
+		Order o3 = new Order(null, Instant.parse("2024-10-18T19:15:07Z"),OrderStatus.WAITING_PAYMENT, u1);
 		
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 	}
