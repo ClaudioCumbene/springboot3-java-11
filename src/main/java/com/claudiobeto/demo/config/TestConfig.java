@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.claudiobeto.demo.entities.Category;
 import com.claudiobeto.demo.entities.Order;
+import com.claudiobeto.demo.entities.OrderItem;
 import com.claudiobeto.demo.entities.Product;
 import com.claudiobeto.demo.entities.User;
 import com.claudiobeto.demo.entities.enums.OrderStatus;
 import com.claudiobeto.demo.repositories.CategoryRepository;
+import com.claudiobeto.demo.repositories.OrderItemRepository;
 import com.claudiobeto.demo.repositories.OrderRepository;
 import com.claudiobeto.demo.repositories.ProductRepository;
 import com.claudiobeto.demo.repositories.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig  implements CommandLineRunner{
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 
 	@Override
@@ -73,12 +78,13 @@ public class TestConfig  implements CommandLineRunner{
 
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice()); 
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice()); 
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice()); 
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice()); 
 		
-		
-		
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
 	}
-	
-	
 	
 }
